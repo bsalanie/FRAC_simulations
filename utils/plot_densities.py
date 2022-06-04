@@ -4,7 +4,7 @@ import seaborn as sns
 import pandas as pd
 
 
-from params_monte_carlo import (
+from utils.params_monte_carlo import (
     mkdir_if_needed_,
     coeff_subsets,
     data_dir,
@@ -23,9 +23,6 @@ from params_monte_carlo import (
     str_coeffs,
 )
 
-sns.set_context("paper")
-sns.set_style("whitegrid")
-
 
 def select_data(df, subcase, coeff_subset):
     """extract the results for a subcase and a subset of parameters"""
@@ -38,14 +35,14 @@ def select_data(df, subcase, coeff_subset):
     if coeff_subset == "All":
         select_df = df[sel_cond]
     else:
-        str_coeffs, methods_coeffs = coeff_subsets[coeff_subset]
-        crit5 = df["Parameter"].isin(str_coeffs)
+        subset_str_coeffs, methods_coeffs = coeff_subsets[coeff_subset]
+        crit5 = df["Parameter"].isin(subset_str_coeffs)
         crit6 = df["Method"].isin(methods_coeffs)
         select_df = df[sel_cond & crit5 & crit6]
     return select_df
 
 
-def plot_estimates(df, subcase, coeff_subset, true_vals, savedir):
+def plot_estimates(df, subcase, coeff_subset, true_vals):
     """plots densities of a subset of estimates for a subcase"""
     select_df = select_data(df, subcase, coeff_subset)
     n_coeffs = len(coeff_subsets[coeff_subset][0])
@@ -104,79 +101,4 @@ def plot_estimates(df, subcase, coeff_subset, true_vals, savedir):
 
     g.add_legend()
 
-    savedir = mkdir_if_needed_(savedir)
-
-    g.savefig(
-        f"{savedir}/{coeff_subset}_s{sigma2}_o{var_omega}_x{var_xi}_g{gamma_val}.png"
-    )
-    plt.clf()
-
-
-if __name__ == "__main__":
-
-    sns.set_style("whitegrid")
-    sns.set_context("paper")
-
-    df_results = pd.read_pickle(f"{data_dir}/df_results.pkl")
-    # make pretty LaTeX names
-    df_results["Parameter"] = df_results["Parameter"].map(
-        {k: v for (k, v) in zip(headers_coeffs, str_coeffs)}
-    )
-
-    for gamma_val in gamma_vals:
-        for var_omega in var_omega_vals:
-            for var_xi in var_xi_vals:
-                for sigma2 in sigma2_vals:
-                    subcase = (sigma2, gamma_val, var_xi, var_omega)
-                    # print(subcase)
-                    # plots for the mean coefficients of demand
-                    true_vals = [basic_values[j] for j in headers_demand_betas]
-                    plot_estimates(
-                        df_results,
-                        subcase,
-                        "means_betas",
-                        true_vals,
-                        plots_dir / "plots_means_betas",
-                    )
-                    # plots for the variances of the coefficients of demand
-                    true_vals = [
-                        basic_values[j] * sigma2 / basic_values["var_1"]
-                        for j in headers_demand_sigmas
-                    ]
-                    plot_estimates(
-                        df_results,
-                        subcase,
-                        "variances_betas",
-                        true_vals,
-                        plots_dir / "plots_variances_betas",
-                    )
-                    # plots for the coefficients of supply
-                    true_vals = [basic_values["gamma_0"]] + [
-                        basic_values[j] * gamma_val / basic_values["gamma_1"]
-                        for j in headers_supply[1:]
-                    ]
-                    plot_estimates(
-                        df_results,
-                        subcase,
-                        "gammas",
-                        true_vals,
-                        plots_dir / "plots_gammas",
-                    )
-                    # plots for the variance shares of demand
-                    true_vals = [basic_values[j] for j in headers_varianceshares_demand]
-                    plot_estimates(
-                        df_results,
-                        subcase,
-                        "variance_shares_demand",
-                        true_vals,
-                        plots_dir / "plots_variance_shares",
-                    )
-                    # plots for the variance shares of supply
-                    true_vals = [basic_values[j] for j in headers_varianceshares_supply]
-                    plot_estimates(
-                        df_results,
-                        subcase,
-                        "variance_shares_supply",
-                        true_vals,
-                        plots_dir / "plots_variance_shares",
-                    )
+    return g

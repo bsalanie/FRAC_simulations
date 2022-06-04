@@ -5,20 +5,12 @@ import numpy as np
 import sys
 
 
-from params_monte_carlo import (
-    mkdir_if_needed_,
+from utils.params_monte_carlo import (
     data_dir,
-    plots_dir,
-    str_demand_betas,
-    str_demand_sigmas,
+    str_beta_1,
+    str_var_1,
+    str_var_p,
 )
-
-
-sns.set_context("paper")
-sns.set_style("whitegrid")
-
-str_beta_1 = str_demand_betas[1]
-str_var_1 = str_demand_sigmas[0]
 
 
 def plot_power(which_test: str, str_coeff: str):
@@ -53,9 +45,7 @@ def plot_power(which_test: str, str_coeff: str):
     test_what = r"$(H_0):$" + str_coeff + r"$=0$"
     g.fig.suptitle(f"Power of test of {test_what}")
 
-    savedir = mkdir_if_needed_(plots_dir / f"test_{which_test}")
-    g.savefig(savedir / f"plot_{which_test}_power.png")
-    plt.clf()
+    return g
 
 
 def plot_joint_(df, coeff_colname):
@@ -76,11 +66,9 @@ def plot_joint_(df, coeff_colname):
     if coeff_colname == "true_beta_1":
         str_coeff = str_beta_1
         other_str_coeff = str_var_1
-        what0 = "var_1_is_0"
     elif coeff_colname == "true_var_1":
         str_coeff = str_var_1
         other_str_coeff = str_beta_1
-        what0 = "beta_1_is_0"
     else:
         sys.exit(f"{coeff_colname=} is not valid")
 
@@ -95,9 +83,7 @@ def plot_joint_(df, coeff_colname):
     test_what = r"$(H_0):$" + str_beta_1 + " = " + str_var_1 + r"$\; =0$"
     g.fig.suptitle(f"Power of test of {test_what} when {other_str_coeff} = 0")
 
-    savedir = mkdir_if_needed_(plots_dir / f"test_joint_1")
-    g.savefig(savedir / f"plot_joint_1_power_{what0}.png")
-    plt.clf()
+    return g
 
 
 def plot_power_joint_1():
@@ -115,17 +101,19 @@ def plot_power_joint_1():
     # print(f"{df_sel_pos_var_1=}")
 
     df_beta_1 = pd.concat([df_sel_null, df_sel_pos_beta_1])
-    plot_joint_(df_beta_1, "true_beta_1")
+    g_beta_1 = plot_joint_(df_beta_1, "true_beta_1")
 
     df_var_1 = pd.concat([df_sel_null, df_sel_pos_var_1])
-    plot_joint_(df_var_1, "true_var_1")
+    g_var_1 = plot_joint_(df_var_1, "true_var_1")
+
+    return g_beta_1, g_var_1
 
 
 if __name__ == "__main__":
 
-    plot_power("beta_1", str_demand_betas[1])
-    plot_power("var_1", str_demand_sigmas[0])
-    plot_power("var_p", str_demand_sigmas[3])
+    plot_power("beta_1", str_beta_1)
+    plot_power("var_1", str_var_1)
+    plot_power("var_p", str_var_p)
     plot_power_joint_1()
 
     # plot_power_over_ident()
