@@ -74,7 +74,6 @@ monte_carlo_dir = mkdir_if_needed_(
 )
 estimates_dir = monte_carlo_dir / "estimates"
 data_dir = mkdir_if_needed_("./Latest_Data")
-plots_dir = mkdir_if_needed_("./Latest_Plots")
 
 var_omega_vals = (0.2,)
 var_omega_strs = tuple(map(str, var_omega_vals))

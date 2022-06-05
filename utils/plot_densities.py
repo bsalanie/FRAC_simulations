@@ -5,22 +5,7 @@ import pandas as pd
 
 
 from utils.params_monte_carlo import (
-    mkdir_if_needed_,
     coeff_subsets,
-    data_dir,
-    plots_dir,
-    basic_values,
-    headers_demand_betas,
-    headers_demand_sigmas,
-    headers_supply,
-    headers_varianceshares_demand,
-    headers_varianceshares_supply,
-    gamma_vals,
-    var_xi_vals,
-    var_omega_vals,
-    sigma2_vals,
-    headers_coeffs,
-    str_coeffs,
 )
 
 

@@ -8,7 +8,6 @@ from utils.params_monte_carlo import (
     str_coeffs,
     gamma_vals,
     var_xi_vals,
-    var_omega_vals,
     sigma2_vals,
     basic_values,
     headers_demand_betas,
@@ -18,12 +17,30 @@ from utils.params_monte_carlo import (
 from utils.plot_densities import plot_estimates
 
 
+uni_sigma2 = "\N{GREEK SMALL LETTER SIGMA}\N{SUPERSCRIPT TWO}"
+
+
 sns.set_context("notebook")
 sns.set_style("whitegrid")
 
 st.markdown("## Finite sample simulations:")
 st.markdown("###\t\tFRAC and MPEC estimates")
-st.sidebar.subheader("Using FRAC as per Salani&eacute;-Wolak (2022)")
+
+st.sidebar.markdown(
+    """
+    ### The simulation setup:
+    
+    It is described in section 7 of Salani&eacute;-Wolak (2022);
+    it adapts  Dub&eacute;-Fox-Su (*Eca* 2012).
+
+    There are $T=50$ markets and $J=25$ products in each market, 
+    and three observed product characteristics in addition to the price. 
+
+    Instead of a reduced form price equation that induces correlation between price and product effects,
+    we specify a cost side of the market and solve the first-order conditions for profit-maximization 
+    to compute the market clearing prices.
+    """
+)
 
 
 @st.cache(persist=True)
@@ -38,11 +55,23 @@ def load_results():
 
 df_results = load_results()
 
-gamma_val = st.selectbox("Choose a value for gamma", gamma_vals)
+gamma_val = st.selectbox(
+    "Choose a scale factor for the marginal cost:",
+    gamma_vals,
+    # default=[0.1],
+)
 # var_omega = st.selectbox("Choose a value for var_omega", var_omega_vals)
 var_omega = 0.2
-var_xi = st.selectbox("Choose a value for var_xi", var_xi_vals)
-sigma2 = st.selectbox("Choose a value for sigma2", sigma2_vals)
+var_xi = st.selectbox(
+    "Choose a value for the variance of the product effects:",
+    var_xi_vals,
+    # default=[0.5],
+)
+sigma2 = st.selectbox(
+    "Choose a scale factor for the variance of the random coefficients:",
+    sigma2_vals,
+    # default=[0.5],
+)
 
 subcase = (sigma2, gamma_val, var_xi, var_omega)
 
