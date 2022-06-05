@@ -22,6 +22,13 @@ st.sidebar.markdown(
     it adapts  Dub&eacute;-Fox-Su (*Eca* 2012).
 
     The tests reported here use scale factors (0.1, 0.5, 0.5).
+
+    For each null hypothesis, we show the power curve of a test of nominal size 5%, and the distribution of the p-values.
+
+    An ideal test would have power 0.05 under the null, and one under the alternative;
+
+    the distribution of the p-values would be uniform on [0,1] under the null,
+    and a Dirac mass at 0 under the alternative.
     """
 )
 beta_1_is_0 = uni_beta_1 + "=0"
