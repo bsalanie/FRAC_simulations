@@ -26,6 +26,7 @@ sns.set_style("whitegrid")
 st.markdown("## Finite sample simulations:")
 st.markdown("###\t\tFRAC and MPEC estimates")
 
+
 st.sidebar.markdown(
     """
     ### The simulation setup:

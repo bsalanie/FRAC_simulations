@@ -14,6 +14,9 @@ uni_var_1 = "\N{GREEK SMALL LETTER SIGMA}\N{SUBSCRIPT ONE}\N{SUPERSCRIPT TWO}"
 uni_var_p = "\N{GREEK SMALL LETTER SIGMA}\u209a\N{SUPERSCRIPT TWO}"
 
 
+st.markdown("## Finite sample simulations:")
+st.markdown("###\t\tSpecification tests")
+
 st.sidebar.markdown(
     """
     ### The simulation setup:
