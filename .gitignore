@@ -130,3 +130,6 @@ dmypy.json
 
 # macOS
 .DS_Store
+
+# simulation results not used by the app
+asymptotic_plots/**/*.pkl
