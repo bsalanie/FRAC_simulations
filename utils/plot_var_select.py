@@ -58,10 +58,10 @@ def plot_pvalues(which_test: str, str_coeff: str, only_2siv: bool = False):
     if not only_2siv:
         g.set_titles(row_template="{row_name}")
     g.set_titles(col_template="True " + str_coeff + " = {col_name}")
-    g.fig.subplots_adjust(top=0.9)
+    g.figure.subplots_adjust(top=0.9)
 
     test_what = r"$(H_0):$" + str_coeff + r"$=0$"
-    g.fig.suptitle(f"Testing {test_what}")
+    g.figure.suptitle(f"Testing {test_what}")
 
     return g
 
@@ -94,9 +94,9 @@ def plot_pvalues_joint_(df_sel, coeff_colname):
     g.set_titles(col_template="True " + str_coeff + " = {col_name}")
     g.set_titles(row_template="{row_name}")
 
-    g.fig.subplots_adjust(top=0.9)
+    g.figure.subplots_adjust(top=0.9)
     test_what = r"$(H_0):$" + str_beta_1 + r"$=$" + str_var_1 + r"$=0$"
-    g.fig.suptitle(f"Testing {test_what} when {other_str_coeff} = 0")
+    g.figure.suptitle(f"Testing {test_what} when {other_str_coeff} = 0")
 
     return g
 

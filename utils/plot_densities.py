@@ -70,8 +70,8 @@ def plot_estimates(df, subcase, coeff_subset, true_vals):
     g.set(yticks=[], xlabel="")  # set y ticks to blank
     g.despine(left=True)  # remove 'spines'
 
-    # g.fig.subplots_adjust(top=0.85)
-    g.fig.suptitle(
+    # g.figure.subplots_adjust(top=0.85)
+    g.figure.suptitle(
         "For "
         + r"$\sigma^2=$"
         + f"{sigma2}, "

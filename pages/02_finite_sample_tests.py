@@ -65,17 +65,17 @@ for hypo in which_tests:
     if hypo == joint_1:
         if "power" in which_plots:
             g_beta_1, g_var_1 = plot_power_joint_1()
-            st.pyplot(g_beta_1)
-            st.pyplot(g_var_1)
+            st.pyplot(g_beta_1.figure)
+            st.pyplot(g_var_1.figure)
         if "pvalues" in which_plots:
             g_beta_1, g_var_1 = plot_pvalues_joint_1()
-            st.pyplot(g_beta_1)
-            st.pyplot(g_var_1)
+            st.pyplot(g_beta_1.figure)
+            st.pyplot(g_var_1.figure)
     else:
         vals = hypotheses[hypo]
         if "power" in which_plots:
             g = plot_power(*vals)
-            st.pyplot(g)
+            st.pyplot(g.figure)
         if "pvalues" in which_plots:
             g = plot_pvalues(*vals, only_2siv=True)
-            st.pyplot(g)
+            st.pyplot(g.figure)

@@ -62,16 +62,15 @@ def mkdir_if_needed_(p: Union[Path, str]) -> Path:
     try:
         q = Path(p)
     except:
-        error_abort(f"{p} is not a path")
+        error_abort_(f"{p} is not a path")
     if not q.exists():
         q.mkdir(parents=True)
     return q
 
 
 frank_blp_root = Path.home() / "Dropbox/BernardFrankBLP"
-monte_carlo_dir = mkdir_if_needed_(
-    frank_blp_root / "Q2-2022" / "Estimates_and_Tests_May_29"
-)
+# only read by the utils/read_monte_carlo_*.py scripts, so we do not create it
+monte_carlo_dir = frank_blp_root / "Q2-2022" / "Estimates_and_Tests_May_29"
 estimates_dir = monte_carlo_dir / "estimates"
 data_dir = mkdir_if_needed_("./Latest_Data")
 

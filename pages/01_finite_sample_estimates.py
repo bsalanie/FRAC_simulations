@@ -44,7 +44,7 @@ st.sidebar.markdown(
 )
 
 
-@st.cache(persist=True)
+@st.cache_data(persist="disk")
 def load_results():
     df_results = pd.read_pickle(f"{data_dir}/df_results.pkl")
     # make pretty LaTeX names
@@ -85,7 +85,7 @@ g = plot_estimates(
     true_vals,
 )
 st.markdown("#### Distribution of the estimates of the mean coefficients of demand:")
-st.pyplot(g)
+st.pyplot(g.figure)
 
 # plots for the variances of the coefficients of demand
 true_vals = [
@@ -101,7 +101,7 @@ st.markdown(
     "#### Distribution of the estimates of the variances of the coefficients of demand:"
 )
 
-st.pyplot(g)
+st.pyplot(g.figure)
 # plots for the coefficients of supply
 true_vals = [basic_values["gamma_0"]] + [
     basic_values[j] * gamma_val / basic_values["gamma_1"] for j in headers_supply[1:]
@@ -114,7 +114,7 @@ g = plot_estimates(
 )
 st.markdown("#### Distribution of the estimates of the coefficients of supply:")
 
-st.pyplot(g)
+st.pyplot(g.figure)
 # # plots for the variance shares of demand
 # true_vals = [basic_values[j] for j in headers_varianceshares_demand]
 # plot_estimates(

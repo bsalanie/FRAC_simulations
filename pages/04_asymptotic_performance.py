@@ -17,7 +17,7 @@ sns.set_style("whitegrid")
 
 
 st.markdown(
-    """
+    r"""
     ## Asymptotic performance of FRAC estimators
     
     We show the properties of the FRAC(D) and the corrected estimators
@@ -30,7 +30,7 @@ st.markdown(
 
 st.sidebar.subheader("The simulation setup:")
 st.sidebar.markdown(
-    """
+    r"""
     It is described in section 6 of Salani&eacute;-Wolak (2022).
 
     This is a discrete choice model on market-level data, with multinomial logit idiosyncratic preference shocks.
@@ -45,7 +45,7 @@ st.sidebar.markdown(
 
 st.sidebar.subheader("Special cases:")
 st.sidebar.markdown(
-    """
+    r"""
     The *exogenous* models have price independent of product effects;
     
     the models *without a micromoment* have $D\equiv 0$.
@@ -68,7 +68,7 @@ st.write(
 )
 
 
-@st.cache(persist=True)
+@st.cache_resource
 def load_plot(
     plot_type: str, nproducts: int, scenario: int, model: str, pi_num: int = None
 ):

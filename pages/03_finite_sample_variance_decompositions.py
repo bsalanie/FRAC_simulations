@@ -41,14 +41,14 @@ st.sidebar.markdown(
 st.markdown("### Notes on the graphs")
 
 st.markdown(
-    """
+    r"""
     The graphs show the average proportion of the variance across the 
     simulated samples. Each panel corresponds to a value of $\sigma^2$ and of the variance of the product effects.
     """
 )
 
 st.markdown(
-    """
+    r"""
     You can choose to see the decomposition for demand and/or supply,
     the value of $\gamma_1$ (which indexes the strength of the supply-side
     instruments).
@@ -56,11 +56,11 @@ st.markdown(
 )
 
 
-@st.cache(persist=True)
+@st.cache_resource
 def load_plot(plot_gamma: float, side: str):
     mside = side.lower()
     plot_dir = f"{DATA_URL}"
-    plot_str = f"variance_shares_{mside}_g{gamma_val}"
+    plot_str = f"variance_shares_{mside}_g{plot_gamma}"
     our_plot = Image.open(f"{plot_dir}/{plot_str}.png")
     return our_plot
 

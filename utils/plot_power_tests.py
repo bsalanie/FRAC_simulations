@@ -40,10 +40,10 @@ def plot_power(which_test: str, str_coeff: str):
     )
 
     g.set_titles(col_template="{col_name}")
-    g.fig.subplots_adjust(top=0.8)
+    g.figure.subplots_adjust(top=0.8)
 
     test_what = r"$(H_0):$" + str_coeff + r"$=0$"
-    g.fig.suptitle(f"Power of test of {test_what}")
+    g.figure.suptitle(f"Power of test of {test_what}")
 
     return g
 
@@ -78,10 +78,10 @@ def plot_joint_(df, coeff_colname):
     )
 
     g.set_titles(col_template="{col_name}")
-    g.fig.subplots_adjust(top=0.8)
+    g.figure.subplots_adjust(top=0.8)
 
     test_what = r"$(H_0):$" + str_beta_1 + " = " + str_var_1 + r"$\; =0$"
-    g.fig.suptitle(f"Power of test of {test_what} when {other_str_coeff} = 0")
+    g.figure.suptitle(f"Power of test of {test_what} when {other_str_coeff} = 0")
 
     return g
 
