@@ -3,7 +3,7 @@ import streamlit as st
 st.markdown("## Fast, Robust, and Approximately Correct")
 st.markdown(
     """
-    #### Monte Carlo simulation results on the FRAC method of Salani&eacute;-Wolak 2022.
+    #### Monte Carlo simulation results on the FRAC method of Salani&eacute;-Wolak 2026.
     
     This app shows detailed results of the simulations reported in sections 6 and 7 of the paper:
 

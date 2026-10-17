@@ -1,21 +1,20 @@
-import streamlit as st
-import seaborn as sns
 import pandas as pd
+import seaborn as sns
+import streamlit as st
 
 from utils.params_monte_carlo import (
-    data_dir,
-    headers_coeffs,
-    str_coeffs,
-    gamma_vals,
-    var_xi_vals,
-    sigma2_vals,
     basic_values,
+    data_dir,
+    gamma_vals,
+    headers_coeffs,
     headers_demand_betas,
     headers_demand_sigmas,
     headers_supply,
+    sigma2_vals,
+    str_coeffs,
+    var_xi_vals,
 )
 from utils.plot_densities import plot_estimates
-
 
 uni_sigma2 = "\N{GREEK SMALL LETTER SIGMA}\N{SUPERSCRIPT TWO}"
 
@@ -31,7 +30,7 @@ st.sidebar.markdown(
     """
     ### The simulation setup:
     
-    It is described in section 7 of Salani&eacute;-Wolak (2022);
+    It is described in section 6 of Salani&eacute;-Wolak (2026);
     it adapts  Dub&eacute;-Fox-Su (*Eca* 2012).
 
     There are $T=50$ markets and $J=25$ products in each market, 

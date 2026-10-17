@@ -1,10 +1,9 @@
-import streamlit as st
 import seaborn as sns
+import streamlit as st
 
 from utils.params_monte_carlo import str_beta_1, str_var_1, str_var_p
-from utils.plot_var_select import plot_pvalues, plot_pvalues_joint_1
 from utils.plot_power_tests import plot_power, plot_power_joint_1
-
+from utils.plot_var_select import plot_pvalues, plot_pvalues_joint_1
 
 sns.set_context("notebook")
 sns.set_style("whitegrid")
@@ -21,7 +20,7 @@ st.sidebar.markdown(
     """
     ### The simulation setup:
     
-    It is described in section 7 of Salani&eacute;-Wolak (2022);
+    It is described in section 6 of Salani&eacute;-Wolak (2026);
     it adapts  Dub&eacute;-Fox-Su (*Eca* 2012).
 
     The tests reported here use scale factors (0.1, 0.5, 0.5).

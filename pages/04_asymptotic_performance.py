@@ -1,9 +1,9 @@
-from PIL import Image
-import streamlit as st
-import seaborn as sns
-
-from typing import List
 from functools import partial
+from typing import List
+
+import seaborn as sns
+import streamlit as st
+from PIL import Image
 
 DATA_URL = "./asymptotic_plots"
 
@@ -31,7 +31,7 @@ st.markdown(
 st.sidebar.subheader("The simulation setup:")
 st.sidebar.markdown(
     r"""
-    It is described in section 6 of Salani&eacute;-Wolak (2022).
+    It is described in section 5 of Salani&eacute;-Wolak (2026).
 
     This is a discrete choice model on market-level data, with multinomial logit idiosyncratic preference shocks.
     

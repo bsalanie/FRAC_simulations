@@ -1,0 +1,15 @@
+[project]
+name = "frac-simulations"
+version = "0.2.0"
+description = "Simulations for the FRAC method of Salanie-Wolak 2026"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "pandas>=3.0.6",
+    "pillow>=12.3.0",
+    "seaborn>=0.13.2",
+    "streamlit>=1.65.0",
+    "watchdog>=6.0.0",
+]

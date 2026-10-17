@@ -1,9 +1,6 @@
-from PIL import Image
-import streamlit as st
 import seaborn as sns
-
-from typing import List
-from functools import partial
+import streamlit as st
+from PIL import Image
 
 DATA_URL = "./variance_shares_plots"
 
@@ -20,11 +17,11 @@ st.sidebar.markdown(
     """
     **The simulation setup:**
     
-    It is described in section 7 of Salani&eacute;-Wolak (2022);
+    It is described in section 6 of Salani&eacute;-Wolak (2022);
     it adapts  Dub&eacute;-Fox-Su (*Eca* 2012).
 
     We show what accounts for the variation in market shares and in marginal costs 
-    in our simulations.
+    in our simulations (as in Appendix E of Salani&eacute;-Wolak 2026).
 
     *For market shares:*
     * $V^D_1$ is the proportion of the variance that comes from the covariates and the (instrumented) prices
