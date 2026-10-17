@@ -5,8 +5,8 @@ import numpy as np
 import sys
 
 
+from utils.app_helpers import load_test_results
 from utils.params_monte_carlo import (
-    data_dir,
     str_beta_1,
     str_var_1,
 )
@@ -19,7 +19,7 @@ def plot_diag_(*args, **kwargs):
 
 
 def plot_pvalues(which_test: str, str_coeff: str, only_2siv: bool = False):
-    df = pd.read_pickle(f"{data_dir}/df_test_{which_test}_results.pkl")
+    df = load_test_results(which_test)
     df_sel = df[df.Parameter == "p_value"]
     # print(df_sel)
     true_coeff = f"true_{which_test}"
@@ -102,7 +102,7 @@ def plot_pvalues_joint_(df_sel, coeff_colname):
 
 
 def plot_pvalues_joint_1():
-    df = pd.read_pickle(f"{data_dir}/df_test_joint_1_results.pkl")
+    df = load_test_results("joint_1")
     df_sel = df[(df.Parameter == "p_value") & (df.Method == "FRAC(D)")]
 
     df_sel = df_sel[["true_beta_1", "true_var_1", "Value"]]

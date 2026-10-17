@@ -1,15 +1,36 @@
 import streamlit as st
 
-st.markdown("## Fast, Robust, and Approximately Correct")
-st.markdown(
-    """
-    #### Monte Carlo simulation results on the FRAC method of Salani&eacute;-Wolak 2026.
-    
-    This app shows detailed results of the simulations reported in sections 6 and 7 of the paper:
+st.set_page_config(page_title="FRAC simulations", page_icon=":material/insights:")
 
-    1. the distribution of the FRAC and MPEC estimates for a reasonably realistic 'macro-BLP'  model
-    2. as well as specification tests
-    3. and  variance decompositions of market shares and costs
-    4. and the asymptotic properties of FRAC in the many-market limit.
-    """
+pg = st.navigation(
+    {
+        "": [
+            st.Page("app_pages/home.py", title="Home", icon=":material/home:"),
+        ],
+        "Finite sample": [
+            st.Page(
+                "app_pages/estimates.py",
+                title="Estimates",
+                icon=":material/area_chart:",
+            ),
+            st.Page(
+                "app_pages/tests.py",
+                title="Specification tests",
+                icon=":material/rule:",
+            ),
+            st.Page(
+                "app_pages/variance_decompositions.py",
+                title="Variance decompositions",
+                icon=":material/pie_chart:",
+            ),
+        ],
+        "Many-market limit": [
+            st.Page(
+                "app_pages/asymptotic_performance.py",
+                title="Asymptotic performance",
+                icon=":material/trending_flat:",
+            ),
+        ],
+    }
 )
+pg.run()

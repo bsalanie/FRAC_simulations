@@ -72,7 +72,9 @@ frank_blp_root = Path.home() / "Dropbox/BernardFrankBLP"
 # only read by the utils/read_monte_carlo_*.py scripts, so we do not create it
 monte_carlo_dir = frank_blp_root / "Q2-2022" / "Estimates_and_Tests_May_29"
 estimates_dir = monte_carlo_dir / "estimates"
-data_dir = mkdir_if_needed_("./Latest_Data")
+# the root of the app, so that paths do not depend on the working directory
+app_root = Path(__file__).resolve().parent.parent
+data_dir = mkdir_if_needed_(app_root / "Latest_Data")
 
 var_omega_vals = (0.2,)
 var_omega_strs = tuple(map(str, var_omega_vals))

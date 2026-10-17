@@ -137,3 +137,5 @@ asymptotic_plots/**/*.pkl
 # Streamlit agent skills (environment-specific symlinks)
 .agents/skills/developing-with-streamlit
 .claude/skills/developing-with-streamlit
+# interactive versions of the asymptotic figures, not used by the app
+asymptotic_plots/**/*.html

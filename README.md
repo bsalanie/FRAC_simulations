@@ -30,13 +30,13 @@ The app has been tested with Python 3.13.5.
 
 ```bash
 uv sync
-uv run treamlit run main_page.py
+uv run streamlit run main_page.py
 ```
 
 ## Repository layout
 
-- `main_page.py`: the app's landing page
-- `pages/`: the four pages of the app
+- `main_page.py`: the app entry point, which sets up the navigation
+- `app_pages/`: the home page and the four pages of the app
 - `utils/`: simulation parameters and plotting functions
   - `read_monte_carlo_estimates.py` and `read_monte_carlo_tests.py` rebuild the data
     files in `Latest_Data/` from the raw simulation output (not included in this repository)
