@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-from utils.app_helpers import set_plot_style, show_grid
+from utils.app_helpers import set_plot_style, show_grids
 from utils.params_monte_carlo import (
     basic_values,
     data_dir,
@@ -77,21 +77,29 @@ subcase = (sigma2, gamma_val, var_xi, var_omega)
 # plots for the mean coefficients of demand
 st.subheader("Distribution of the estimates of the mean coefficients of demand")
 true_vals = [basic_values[j] for j in headers_demand_betas]
-g = plot_estimates(df_results, subcase, "means_betas", true_vals)
-show_grid(g, alt="Densities of the estimates of the mean coefficients of demand")
+show_grids(
+    lambda: plot_estimates(df_results, subcase, "means_betas", true_vals),
+    alt="Densities of the estimates of the mean coefficients of demand",
+)
 
 # plots for the variances of the coefficients of demand
-st.subheader("Distribution of the estimates of the variances of the coefficients of demand")
+st.subheader(
+    "Distribution of the estimates of the variances of the coefficients of demand"
+)
 true_vals = [
     basic_values[j] * sigma2 / basic_values["var_1"] for j in headers_demand_sigmas
 ]
-g = plot_estimates(df_results, subcase, "variances_betas", true_vals)
-show_grid(g, alt="Densities of the estimates of the variances of the coefficients of demand")
+show_grids(
+    lambda: plot_estimates(df_results, subcase, "variances_betas", true_vals),
+    alt="Densities of the estimates of the variances of the coefficients of demand",
+)
 
 # plots for the coefficients of supply
 st.subheader("Distribution of the estimates of the coefficients of supply")
 true_vals = [basic_values["gamma_0"]] + [
     basic_values[j] * gamma_val / basic_values["gamma_1"] for j in headers_supply[1:]
 ]
-g = plot_estimates(df_results, subcase, "gammas", true_vals)
-show_grid(g, alt="Densities of the estimates of the coefficients of supply")
+show_grids(
+    lambda: plot_estimates(df_results, subcase, "gammas", true_vals),
+    alt="Densities of the estimates of the coefficients of supply",
+)

@@ -1,6 +1,6 @@
 import streamlit as st
 
-from utils.app_helpers import set_plot_style, show_grid
+from utils.app_helpers import set_plot_style, show_grids
 from utils.params_monte_carlo import str_beta_1, str_var_1, str_var_p
 from utils.plot_power_tests import plot_power, plot_power_joint_1
 from utils.plot_var_select import plot_pvalues, plot_pvalues_joint_1
@@ -68,17 +68,18 @@ if not which_tests or not which_plots:
 for hypo in which_tests:
     if hypo == joint_1:
         if "power" in which_plots:
-            for g in plot_power_joint_1():
-                show_grid(g, alt=f"Power of the test of {hypo}")
+            show_grids(plot_power_joint_1, alt=f"Power of the test of {hypo}")
         if "pvalues" in which_plots:
-            for g in plot_pvalues_joint_1():
-                show_grid(g, alt=f"Distribution of the p-values of the test of {hypo}")
+            show_grids(
+                plot_pvalues_joint_1,
+                alt=f"Distribution of the p-values of the test of {hypo}",
+            )
     else:
         vals = hypotheses[hypo]
         if "power" in which_plots:
-            show_grid(plot_power(*vals), alt=f"Power of the test of {hypo}")
+            show_grids(lambda: plot_power(*vals), alt=f"Power of the test of {hypo}")
         if "pvalues" in which_plots:
-            show_grid(
-                plot_pvalues(*vals, only_2siv=True),
+            show_grids(
+                lambda: plot_pvalues(*vals, only_2siv=True),
                 alt=f"Distribution of the p-values of the test of {hypo}",
             )
